@@ -31,7 +31,7 @@ Additionally, the value of tag (0010,0010) PatientName is replaced by an SHA256 
 
 The concordance between the SHA256 and the original .zip filename is stored in a file called "BlindingKey.txt". This script should be run by a third party after they have collected all CT scans, and BlindingKey.txt conserved by that third party until all evaluations are completed. The anonymized CT scans can then be delivered to the evaluator for interpretation. Once interpretation is completed, the Blinding Key is recovered from the third party, and observations and measurements in the interpretation can be concorded with the original patients and consequently the treatment group.
 
-# Compatibility and dependencies
+## Compatibility and dependencies
 As of this writing, this script has only been tested on Ubuntu 21.10. The only major dependency is dcmtk, which can be installed from the standard impish/universe repository using the following commands:
 
         sudo apt update
@@ -39,7 +39,7 @@ As of this writing, this script has only been tested on Ubuntu 21.10. The only m
 
 My assumption is that the script would work on any Linux distribution with dcmtk and even on Mac (if dcmtk exists on Mac or can be installed through homebrew).
 
-# Usage
+## Usage
 
 STEP 1: Ensure Dicom file structure. This script assumes the following structure for the CT scan stored inside a zip file:
 

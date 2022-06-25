@@ -38,8 +38,7 @@ for i in $FileList; do
   rm ./$ShaSum/DICOM/*.bak
 done
 
-chown -R peter:peter ./*
-chmod -R 775 ./*
+rm *.zip
 
 
 ##############################################

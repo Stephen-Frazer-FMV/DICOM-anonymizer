@@ -41,7 +41,7 @@ My assumption is that the script would work on any Linux distribution with dcmtk
 
 ## Usage
 
-STEP 1: Ensure Dicom file structure. This script assumes the following structure for the CT scan stored inside a zip file:
+**STEP 1:** Ensure Dicom file structure. This script assumes the following structure for the CT scan stored inside a zip file:
 
         PatientName.zip
         |   DICOMDIR
@@ -54,16 +54,16 @@ DICOMDIR is a file containing a list of the individual image files in the DICOM 
 
 For easiest un-blinding after the study, ensure that each zip file is entitled [PatientName].zip. For the moment the script does not support filenames including anything but alphanumerical characters (no spaces in the filename!!!).
 
-STEP 2: Download the bash script and make it executable. Either do a git clone or download directly. In this README I assume that the script is stored in the .bin folder in my home directory.
+**STEP 2:** Download the bash script and make it executable. Either do a git clone or download directly. In this README I assume that the script is stored in the .bin folder in my home directory.
 
-STEP 3: Take all DICOM files to be anonymized (all of them must be done at the same time to ensure full blinding!), and place them in a previously empty folder. In this README I assume that the folder is entitled DCMAnon in my home directory. Open a terminal and go to that folder:
+**STEP 3:** Take all DICOM files to be anonymized (all of them must be done at the same time to ensure full blinding!), and place them in a previously empty folder. In this README I assume that the folder is entitled DCMAnon in my home directory. Open a terminal and go to that folder:
 
         cd ~/DCMAnon
 
-STEP 4: Run the script. WARNING!!! THE SCRIPT WILL ERASE ALL .zip FILES!!! ENSURE THAT YOU HAVE THEM BACKED UP SOMEWHERE!!!
+**STEP 4:** Run the script. WARNING!!! THE SCRIPT WILL ERASE ALL .zip FILES!!! ENSURE THAT YOU HAVE THEM BACKED UP SOMEWHERE!!!
 
         ~/.bin/AnonymizeDicomsMultiple.sh
 
 I personally ran into some permissions issues due to another project I was working on simultaneously (incorrect environment variables) and had to run it as root, but that shouldn't be necessary.
 
-STEP 5: Send the anonymized DICOM files (in the directories with 64 character names) to the investigator responsible for the evaluation of the CT scans. Make sure to keep back the BlindingKey.txt and to store it in a safe place. If you ever lose it, you may have to restart! At the worst you could rerun the script and since it is generating the new names from SHA256 hashes, it should come up with the same names so long as they are the exact same files as before, but don't run the risk.  Save and backup the BlindingKey.txt file!
+**STEP 5:** Send the anonymized DICOM files (in the directories with 64 character names) to the investigator responsible for the evaluation of the CT scans. Make sure to keep back the BlindingKey.txt and to store it in a safe place. If you ever lose it, you may have to restart! At the worst you could rerun the script and since it is generating the new names from SHA256 hashes, it should come up with the same names so long as they are the exact same files as before, but don't run the risk.  Save and backup the BlindingKey.txt file!

@@ -6,6 +6,7 @@
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
 NC='\033[0m'
 echo -e "${BLUE}Running script to unzip and anonymize all DICOMs in the folder.${NC}"
 
@@ -42,9 +43,10 @@ for i in $FileList; do
   rm ./$ShaSum/DICOMDIR.bak
   rm ./$ShaSum/DICOM/*.bak
   NumDone=$((NumDone+1))
-  echo -e "${GREEN}DICOM number $NumDone of $NumFiles ${NC}"
+  echo -e "${YELLOW}DICOM number $NumDone of $NumFiles Anonymized.${NC}"
 done
 
+echo -e "${YELLOW}All DICOMs have been anonymized.${NC}"
 echo "Do you want to remove original zip files? (Y/N)"
 while : ; do
 read -n 1 k <&1

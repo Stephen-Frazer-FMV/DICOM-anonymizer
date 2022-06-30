@@ -44,10 +44,10 @@ while : ; do
 read -n 1 k <&1
 if [[ $k = Y ]] ; then
   rm *.zip
-  printf "\nZip files deleted, script finished.\n"
+  echo "Zip files deleted, script finished."
   break
 elif [[ $k = N ]] ; then
-  print "\nZip files not deleted, script finished.\n"
+  echo "Zip files not deleted, script finished."
   break
 fi
 done

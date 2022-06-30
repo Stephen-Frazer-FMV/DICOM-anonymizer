@@ -30,6 +30,7 @@ for i in $FileList; do
   echo "Extracting..."
   mkdir "$ShaSum"
   unzip -qq $i -d "./$ShaSum"
+  chmod -R 775 "./$ShaSum"
   #### STEP 2.3: Anonymize the DICOMs in the folder. Full description of the tags that are erased will is included at the end of the script. Contrary to the other metadata EXIF tags, (0010,0010) is not earsed, rather it is replaced with the hash which will serve as the new CT identification.
   echo "Deleting tags..."
   dcmodify -imt -ea "(0008,0012)" -ea "(0008,0013)" -ea "(0008,0018)" -ea "(0008,0020)" -ea "(0008,0021)" -ea "(0008,0022)" -ea "(0008,0023)" -ea "(0008,0030)" -ea "(0008,0031)" -ea "(0008,0032)" -ea "(0008,0033)" -ea "(0008,0090)" -ea "(0010,0020)" -ea "(0010,0030)" -ea "(0010,0040)" -ea "(0010,1010)" -ma "(0010,0010)=$ShaSum" -ea "(0010,21b0)" -ea "(0018,5100)" -ea "(0020,000d)" -ea "(0020,0010)" -ea "(0020,000e)" -ea "(0040,0244)" -ea "(0040,0245)" ./$ShaSum/DICOM/*.dcm
@@ -38,7 +39,18 @@ for i in $FileList; do
   rm ./$ShaSum/DICOM/*.bak
 done
 
-rm *.zip
+echo "Do you want to remove original zip files? (Y/N)"
+while : ; do
+read -n 1 k <&1
+if [[ $k = Y ]] ; then
+  rm *.zip
+  printf "\nZip files deleted, script finished.\n"
+  break
+elif [[ $k = N ]] ; then
+  print "\nZip files not deleted, script finished.\n"
+  break
+fi
+done
 
 
 ##############################################
